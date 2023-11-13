@@ -1,68 +1,46 @@
 #include "main.h"
-#include <stdarg.h>
-#include <unistd.h>
-
 /**
- * _printf - Custom printf function
- * @format: Format string
- *
- * Return: Number of characters printed (excluding null byte)
+ * _printf - is a function that selects the correct function to print.
+ * @format: identifier to look for.
+ * Return: the length of the string.
  */
-int _printf(const char *format, ...)
+int _printf(const char * const format, ...)
 {
-if (format == NULL)
-return (-1);
-int count = 0;
-va_list args;
-va_start(args, format);
-while (*format)
-{
-if (*format == '%' && *(format + 1) != '\0')
-{
-format++;
-switch (*format)
-{
-case 'c':
-count += write(1, &va_arg(args, int), 1);
-break;
-case 's':
-count += write(1, va_arg(args, char *), 1);
-break;
-case '%':
-count += write(1, "%", 1);
-break;
-case 'd':
-case 'i':
-count += write_integer(va_arg(args, int));
-break;
-default:
-count += write(1, "%", 1);
-count += write(1, format, 1);
-}
-}
-else
-{
-count += write(1, format, 1);
-}
-format++;
-}
-va_end(args);
-return (count);
-}
+	convert p[] = {
+		{"%s", print_s}, {"%c", print_c},
+		{"%%", print_37},
+		{"%i", print_i}, {"%d", print_d}, {"%r", print_revs},
+		{"%R", print_rot13}, {"%b", print_bin},
+		{"%u", print_unsigned},
+		{"%o", print_oct}, {"%x", print_hex}, {"%X", print_HEX},
+		{"%S", print_exc_string}, {"%p", print_pointer}
+	};
 
-/**
- * write_integer - Write an integer to standard output
- * @n: Integer to be printed
- *
- * Return: Number of characters printed
- */
-int write_integer(int n)
-{
-char buffer[20];
-int count;
+	va_list args;
+	int i = 0, j, length = 0;
 
-count = sprintf(buffer, "%d", n);
-write(1, buffer, count);
+	va_start(args, format);
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 
-return (count);
+
+	while (format[i] != '\0')
+	{
+		j = 13;
+		while (j >= 0)
+		{
+			if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
+			{
+				length += p[j].function(args);
+				i = i + 2;
+				goto Here;
+			}
+			j--;
+		}
+		_putchar(format[i]);
+		length++;
+		i++;
+	}
+	va_end(args);
+	return (length);
 }
