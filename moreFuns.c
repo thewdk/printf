@@ -4,35 +4,35 @@
 #include <unistd.h>
 #include <stdio.h>
 /**
- * _printUnsignedToBinary - prints an integer.
+ * print_unsignedToBinary - prints an integer.
  * @arg: argument
  * Return: 0
  */
-int _printUnsignedToBinary(va_list arg)
+int print_unsignedToBinary(va_list arg)
 {
 
 unsigned int n = va_arg(arg, unsigned int);
 unsigned int printed;
 
-_printBinary(n, &printed);
-_printBinary(n, &printed);
+print_binary(n, &printed);
+print_binary(n, &printed);
 
 return (printed);
 }
 
 
 /**
- * _printOct - prints number in octal base.
+ * print_oct - prints number in octal base.
  * @arg: list containing octal number to be printed
  * Return: number of octals printed
  */
 
-int _printOct(va_list arg)
+int print_oct(va_list arg)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	unsigned int copy;
 	char *octa;
-	int i, j, charWritten = 0;
+	int i, j, charPrinted = 0;
 
 	if (num == 0)
 		return (_putchar('0'));
@@ -55,19 +55,19 @@ int _printOct(va_list arg)
 	for (; i < j; i++)
 	{
 		_putchar(octa[i]);
-		charWritten++;
+		charPrinted++;
 	}
 	free(octa);
-	return (charWritten);
+	return (charPrinted);
 }
 
 /**
- * _printUnsignedIntToHex - prints unsigned int to hexadecimal.
+ * print_unsignedIntToHex - prints unsigned int to hexadecimal.
  * @num: number to print
  * @_case: letter `a` on the case to print it (upper or lower)
  * Return: number or char printed
  */
-int _printUnsignedIntToHex(unsigned int num, char _case)
+int print_unsignedIntToHex(unsigned int num, char _case)
 {
 	unsigned int num2;
 	int i, j, remainder, nbrCharacters = 0;
@@ -91,4 +91,3 @@ int _printUnsignedIntToHex(unsigned int num, char _case)
 	free(numhex);
 	return (nbrCharacters);
 }
-
