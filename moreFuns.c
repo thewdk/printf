@@ -4,35 +4,35 @@
 #include <unistd.h>
 #include <stdio.h>
 /**
- * print_unsignedToBinary - prints an integer.
+ * _printUnsignedToBinary - prints an integer.
  * @arg: argument
  * Return: 0
  */
-int print_unsignedToBinary(va_list arg)
+int _printUnsignedToBinary(va_list arg)
 {
 
-unsigned int n = va_arg(arg, unsigned int);
+unsigned int num = va_arg(arg, unsigned int);
 unsigned int printed;
 
-print_binary(n, &printed);
-print_binary(n, &printed);
+_printBinary(num, &printed);
+_printBinary(num, &printed);
 
 return (printed);
 }
 
 
 /**
- * print_oct - prints number in octal base.
+ * _printOct - prints number in octal base.
  * @arg: list containing octal number to be printed
  * Return: number of octals printed
  */
 
-int print_oct(va_list arg)
+int _printOct(va_list arg)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	unsigned int copy;
 	char *octa;
-	int i, j, charPrinted = 0;
+	int i, j, charWritten = 0;
 
 	if (num == 0)
 		return (_putchar('0'));
@@ -55,39 +55,40 @@ int print_oct(va_list arg)
 	for (; i < j; i++)
 	{
 		_putchar(octa[i]);
-		charPrinted++;
+		charWritten++;
 	}
 	free(octa);
-	return (charPrinted);
+	return (charWritten);
 }
 
 /**
- * print_unsignedIntToHex - prints unsigned int to hexadecimal.
+ * _printUnsignedIntToHex - prints unsigned int to hexadecimal.
  * @num: number to print
- * @_case: letter `a` on the case to print it (upper or lower)
+ * @case: letter `a` on the case to print it (upper or lower)
  * Return: number or char printed
  */
-int print_unsignedIntToHex(unsigned int num, char _case)
+int _printUnsignedIntToHex(unsigned int num, char case)
 {
 	unsigned int num2;
-	int i, j, remainder, nbrCharacters = 0;
-	char *numhex;
+	int i, j, remainder, nbrChars = 0;
+	char *nhex;
 
-	for (num2 = num; num2 != 0; nbrCharacters++, num2 /= 16)
+	for (num2 = num; num2 != 0; nbrChars++, num2 /= 16)
 	;
 
-	numhex = malloc(nbrCharacters);
+	nhex = malloc(nbrChars);
 	for (i = 0; num != 0; i++)
 	{
 		remainder = num % 16;
 		if (remainder < 10)
-			numhex[i] = remainder + '0';
+			nhex[i] = remainder + '0';
 		else
-			numhex[i] = remainder - 10 + _case;
+			nhex[i] = remainder - 10 + _case;
 		num = num / 16;
 	}
 	for (j = i - 1; j >= 0; j--)
-		_putchar(numhex[j]);
-	free(numhex);
-	return (nbrCharacters);
+		_putchar(nhex[j]);
+	free(nhex);
+	return (nbrChars);
 }
+
