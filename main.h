@@ -1,14 +1,13 @@
-#ifndef MAIN_H
 #define MAIN_H
-#include  <stdio.h>
+#include <stdio.h>
 #include <limits.h>
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdlib.h>
 
 /**
- * struct identifierStruct - structure definition of a printTypeStruct
- * @indentifier: type
+ * struct identifierStruct - structure definition of printTypeStruct
+ * @identifier: type
  * @printer: function to print
  */
 typedef struct idStruct
