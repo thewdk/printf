@@ -64,10 +64,10 @@ int _printOct(va_list arg)
 /**
  * _printUnsignedIntToHex - prints unsigned int to hexadecimal.
  * @num: number to print
- * @case: letter `a` on the case to print it (upper or lower)
+ * @_case: letter `a` on the case to print it (upper or lower)
  * Return: number or char printed
  */
-int _printUnsignedIntToHex(unsigned int num, char case)
+int _printUnsignedIntToHex(unsigned int num, char _case)
 {
 	unsigned int num2;
 	int i, j, remainder, nbrChars = 0;
@@ -91,4 +91,3 @@ int _printUnsignedIntToHex(unsigned int num, char case)
 	free(nhex);
 	return (nbrChars);
 }
-
