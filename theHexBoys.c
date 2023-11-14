@@ -8,14 +8,14 @@
  * Return: number of digits printed
  */
 
-int _printHexBase(va_list arg, char case)
+int _printHexBase(va_list arg, char _case)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	int nbrChars;
 
 	if (num == 0)
 		return (_putchar('0'));
-	nbrChars = _printUnsignedIntToHex(num, case);
+	nbrChars = _printUnsignedIntToHex(num, _case);
 
 	return (nbrChars);
 }
