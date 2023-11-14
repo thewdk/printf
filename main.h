@@ -22,7 +22,7 @@ int _putchar(char c);
 int _printInt(va_list arg);
 int _printUnsigned(va_list arg);
 int _printf(const char *format, ...);
-int _printChar(va_list arg);
+int _printChar(va_list arg)
 int _printStr(va_list arg);
 int _printPercent(void);
 void _printBinary(unsigned int n, unsigned int *printed);
@@ -33,6 +33,14 @@ int _printHex_base(va_list arg, char _case);
 int _printHex(va_list arg);
 int _printHEX(va_list arg);
 int _printSTR(va_list arg);
+
+int _print_char(va_list val);
+int _print_string(va_list val);
+int _strlen(char *s);
+int _strlen(const char *s);
+int _print_%(void);
+int _printf(const char * const format, ...);
+
 
 
 #endif
